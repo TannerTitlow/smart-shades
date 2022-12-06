@@ -16,7 +16,7 @@
     <OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
     <RootNamespace>SmartShades</RootNamespace>
     <LangVersion>7.2</LangVersion>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmartShades.Application\SmartShades.Application.csproj" />

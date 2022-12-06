@@ -4,7 +4,7 @@
   "libraries": [
     //core libs start
     {
-      "library": "jquery@3.6.1",
+      "library": "jquery@3.6.0",
       "destination": "wwwroot/libs/jquery",
       "files": [
         "jquery.js",
@@ -29,19 +29,20 @@
       "destination": "wwwroot/libs/sweetalert"
     },
     {
-      "library": "spin.js@4.1.1",
-      "destination": "wwwroot/libs/spin"
+        "library": "spin.js@2.3.2",
+        "provider": "jsdelivr",
+        "destination": "wwwroot/libs/spin"
     },
     {
       "library": "toastr.js@2.1.4",
       "destination": "wwwroot/libs/toastr"
     },
+  {
+    "library": "moment.js@2.29.4",
+    "destination": "wwwroot/libs/moment"
+  },
     {
-      "library": "moment.js@2.29.4",
-      "destination": "wwwroot/libs/moment"
-    },
-    {
-      "library": "moment-timezone@0.5.39",
+      "library": "moment-timezone@0.5.34",
       "destination": "wwwroot/libs/moment-timezone"
     },
     {
@@ -178,8 +179,9 @@
       "destination": "wwwroot/libs/jquery-validate"
     },
     {
-      "library": "jquery-validation-unobtrusive@4.0.0",
-      "destination": "wwwroot/libs/jquery-validate"
+        "library": "jquery-validation-unobtrusive@3.2.11",
+        "provider": "jsdelivr",
+        "destination": "wwwroot/libs/jquery-validate"
     },
     {
       "library": "push.js@1.0.12",

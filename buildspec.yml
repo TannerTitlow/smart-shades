@@ -20,7 +20,7 @@ phases:
       - cd ./aspnet-core/
       - dotnet restore --packages $NUGET_PACKAGES_DIRECTORY
       - dotnet tool install -g Microsoft.Web.LibraryManager.Cli
-      - cd src/Marckon.Web.Mvc
+      - cd src/SmartShades.Web.Mvc
       - $HOME/.dotnet/tools/libman restore
 
   build:

@@ -1,0 +1,53 @@
+version: 0.2
+
+env:
+  variables:
+    # 1) Name of directory where restore and build objects are stored.
+    OBJECTS_DIRECTORY: obj
+    # 2) Name of directory used for keeping restored dependencies.
+    NUGET_PACKAGES_DIRECTORY: .nuget
+    # 3) A relative path to the source code from project repository root.
+    # NOTE: Please edit this path so it matches the structure of your project!
+    SOURCE_CODE_PATH: ./aspnet-core/*/*/
+
+phases:  
+  install:
+    commands:
+      - /usr/local/bin/dotnet-install.sh --channel LTS
+    
+  pre_build:
+    commands:
+      - cd ./aspnet-core/
+      - dotnet restore --packages $NUGET_PACKAGES_DIRECTORY
+      - dotnet tool install -g Microsoft.Web.LibraryManager.Cli
+      - cd src/Marckon.Web.Mvc
+      - $HOME/.dotnet/tools/libman restore
+
+  build:
+    commands:
+      - dotnet build --no-restore
+
+  post_build:
+    commands:
+      - apt-get update
+      - apt-get -y install zip       
+      - export ASPNETCORE_ENVIRONMENT="Production"
+      - export AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
+      - export AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
+      - export AWS_DEFAULT_REGION="us-east-1"
+      - \cp -R CI_CD/Production/.ebextensions/. .ebextensions
+      - dotnet tool install -g Amazon.ElasticBeanstalk.Tools
+      - $HOME/.dotnet/tools/dotnet-eb deploy-environment  --config-file aws-beanstalk-tools-production.json
+      - echo "Deploy to Production server"
+
+cache:
+  paths:    
+    # Specify paths that should be cached:
+    #
+    # 1) Main JSON file holding information about package dependency tree, packages versions,
+    # frameworks etc. It also holds information where to the dependencies were restored.
+    - $SOURCE_CODE_PATH$OBJECTS_DIRECTORY/project.assets.json
+    # 2) Other NuGet and MSBuild related files. Also needed.
+    - $SOURCE_CODE_PATH$OBJECTS_DIRECTORY/*.csproj.nuget.*
+    # 3) Path to the directory where restored dependencies are kept.
+    - $NUGET_PACKAGES_DIRECTORY

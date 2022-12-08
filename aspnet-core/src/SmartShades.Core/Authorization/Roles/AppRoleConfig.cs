@@ -24,6 +24,21 @@ namespace SmartShades.Authorization.Roles
                     MultiTenancySides.Tenant
                 )
             );
+
+            roleManagementConfig.StaticRoles.Add(
+                new StaticRoleDefinition(
+                    StaticRoleNames.Tenants.User,
+                    MultiTenancySides.Tenant
+                )
+                {
+                    GrantedPermissions =
+                    {
+                        PermissionNames.Pages_Homes,
+                        PermissionNames.Pages_Rooms,
+                        PermissionNames.Pages_Shades
+                    }
+                }
+            );
         }
     }
 }

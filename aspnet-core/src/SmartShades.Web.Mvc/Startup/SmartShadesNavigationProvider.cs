@@ -12,30 +12,28 @@ namespace SmartShades.Web.Startup
     {
         public override void SetNavigation(INavigationProviderContext context)
         {
+            var AdminMenu = new MenuDefinition("AdminMenu", L("AdminMenu"));
+            var UserMenu = new MenuDefinition("UserMenu", L("UserMenu"));
+
             context.Manager.MainMenu
                 .AddItem(
                     new MenuItemDefinition(
-                        PageNames.About,
-                        L("About"),
-                        url: "About",
-                        icon: "fas fa-info-circle"
+                        PageNames.Home,
+                        L("Dashboard"),
+                        url: "",
+                        icon: "fas fa-house-user",
+                        requiresAuthentication: true
                     )
-                )
+                );
+
+            AdminMenu
                 .AddItem(
                     new MenuItemDefinition(
                         PageNames.Home,
-                        L("HomePage"),
+                        L("Dashboard"),
                         url: "",
-                        icon: "fas fa-home",
+                        icon: "fas fa-house-user",
                         requiresAuthentication: true
-                    )
-                ).AddItem(
-                    new MenuItemDefinition(
-                        PageNames.Tenants,
-                        L("Tenants"),
-                        url: "Tenants",
-                        icon: "fas fa-building",
-                        permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Tenants)
                     )
                 ).AddItem(
                     new MenuItemDefinition(
@@ -53,89 +51,61 @@ namespace SmartShades.Web.Startup
                         icon: "fas fa-theater-masks",
                         permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Roles)
                     )
-                )
-                .AddItem( // Menu items below is just for demonstration!
+                );
+
+            UserMenu
+                .AddItem(
                     new MenuItemDefinition(
-                        "MultiLevelMenu",
-                        L("MultiLevelMenu"),
-                        icon: "fas fa-circle"
-                    ).AddItem(
-                        new MenuItemDefinition(
-                            "AspNetBoilerplate",
-                            new FixedLocalizableString("ASP.NET Boilerplate"),
-                            icon: "far fa-circle"
-                        ).AddItem(
-                            new MenuItemDefinition(
-                                "AspNetBoilerplateHome",
-                                new FixedLocalizableString("Home"),
-                                url: "https://aspnetboilerplate.com?ref=abptmpl",
-                                icon: "far fa-dot-circle"
-                            )
-                        ).AddItem(
-                            new MenuItemDefinition(
-                                "AspNetBoilerplateTemplates",
-                                new FixedLocalizableString("Templates"),
-                                url: "https://aspnetboilerplate.com/Templates?ref=abptmpl",
-                                icon: "far fa-dot-circle"
-                            )
-                        ).AddItem(
-                            new MenuItemDefinition(
-                                "AspNetBoilerplateSamples",
-                                new FixedLocalizableString("Samples"),
-                                url: "https://aspnetboilerplate.com/Samples?ref=abptmpl",
-                                icon: "far fa-dot-circle"
-                            )
-                        ).AddItem(
-                            new MenuItemDefinition(
-                                "AspNetBoilerplateDocuments",
-                                new FixedLocalizableString("Documents"),
-                                url: "https://aspnetboilerplate.com/Pages/Documents?ref=abptmpl",
-                                icon: "far fa-dot-circle"
-                            )
-                        )
-                    ).AddItem(
-                        new MenuItemDefinition(
-                            "AspNetZero",
-                            new FixedLocalizableString("ASP.NET Zero"),
-                            icon: "far fa-circle"
-                        ).AddItem(
-                            new MenuItemDefinition(
-                                "AspNetZeroHome",
-                                new FixedLocalizableString("Home"),
-                                url: "https://aspnetzero.com?ref=abptmpl",
-                                icon: "far fa-dot-circle"
-                            )
-                        ).AddItem(
-                            new MenuItemDefinition(
-                                "AspNetZeroFeatures",
-                                new FixedLocalizableString("Features"),
-                                url: "https://aspnetzero.com/Features?ref=abptmpl",
-                                icon: "far fa-dot-circle"
-                            )
-                        ).AddItem(
-                            new MenuItemDefinition(
-                                "AspNetZeroPricing",
-                                new FixedLocalizableString("Pricing"),
-                                url: "https://aspnetzero.com/Pricing?ref=abptmpl#pricing",
-                                icon: "far fa-dot-circle"
-                            )
-                        ).AddItem(
-                            new MenuItemDefinition(
-                                "AspNetZeroFaq",
-                                new FixedLocalizableString("Faq"),
-                                url: "https://aspnetzero.com/Faq?ref=abptmpl",
-                                icon: "far fa-dot-circle"
-                            )
-                        ).AddItem(
-                            new MenuItemDefinition(
-                                "AspNetZeroDocuments",
-                                new FixedLocalizableString("Documents"),
-                                url: "https://aspnetzero.com/Documents?ref=abptmpl",
-                                icon: "far fa-dot-circle"
-                            )
-                        )
+                        PageNames.Home,
+                        L("Dashboard"),
+                        url: "",
+                        icon: "fas fa-house-user",
+                        requiresAuthentication: true
+                    )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        PageNames.Homes,
+                        L("Homes"),
+                        url: "Homes",
+                        icon: "fas fa-home",
+                        permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Homes)
+                    )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        PageNames.Rooms,
+                        L("Rooms"),
+                        url: "Rooms",
+                        icon: "fas fa-door-open",
+                        permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Rooms)
+                    )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        PageNames.Shades,
+                        L("Shades"),
+                        url: "Shades",
+                        icon: "fas fa-water",
+                        permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Shades)
+                    )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        PageNames.Schedules,
+                        L("Schedules"),
+                        url: "Schedules",
+                        icon: "fas fa-calendar-day",
+                        permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Schedules)
+                    )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        PageNames.Blocks,
+                        L("Blocks"),
+                        url: "Blocks",
+                        icon: "fas fa-stopwatch",
+                        permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Blocks)
                     )
                 );
+
+            context.Manager.Menus.Add("AdminMenu", AdminMenu);
+            context.Manager.Menus.Add("UserMenu", UserMenu);
         }
 
         private static ILocalizableString L(string name)

@@ -44,6 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\libs\" />
+    <Folder Include="wwwroot\view-resources\Views\Homes\" />
+    <Folder Include="wwwroot\view-resources\Views\Blocks\" />
+    <Folder Include="wwwroot\view-resources\Views\Schedules\" />
+    <Folder Include="wwwroot\view-resources\Views\Shades\" />
+    <Folder Include="wwwroot\view-resources\Views\Rooms\" />
     <Folder Include="wwwroot\view-resources\Views\_Bundles\" />
   </ItemGroup>
 </Project>

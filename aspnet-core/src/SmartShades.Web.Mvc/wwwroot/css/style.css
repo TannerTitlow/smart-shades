@@ -8,6 +8,10 @@ html {
     overflow: visible;
 }
 
+body {
+    font-family: 'circular_spotify_textmedium' !important;
+}
+
 /* main sidebar not under model */
 .modal {
     z-index: 1110;

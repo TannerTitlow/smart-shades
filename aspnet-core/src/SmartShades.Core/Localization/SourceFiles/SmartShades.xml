@@ -117,5 +117,15 @@
     <text name="ResetPasswordStepOneInfo">1. Enter your administrator password</text>
     <text name="ResetPasswordStepTwoInfo">2. Copy this random password so you can send it to the user</text>
     <text name="UsersActivation">Users activation</text>
+    
+    <text name="Dashboard">Dashboard</text>
+    <text name="Homes">Homes</text>
+    <text name="Rooms">Rooms</text>
+    <text name="Shades">Shades</text>
+    <text name="Schedules">Schedules</text>
+    <text name="Blocks">Blocks</text>
+
+    <text name="AdminMenu">Admin Menu</text>
+    <text name="UserMenu">User Menu</text>
   </texts>
 </localizationDictionary>

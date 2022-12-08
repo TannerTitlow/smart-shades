@@ -32,5 +32,20 @@ namespace SmartShades.Sessions
 
             return output;
         }
+
+
+        [DisableAuditing]
+        public async Task<bool> IsCurrentUserInRole(string role)
+        {
+            var inRole = false;
+            if (AbpSession.UserId.HasValue)
+            {
+                Authorization.Users.User user = await GetCurrentUserAsync();
+                inRole = await UserManager.IsInRoleAsync(user, role);
+            }
+
+            return inRole;
+        }
+
     }
 }

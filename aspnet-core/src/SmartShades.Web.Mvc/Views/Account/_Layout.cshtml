@@ -24,24 +24,70 @@
 
     @await Html.PartialAsync("_Styles.cshtml")
     @RenderSection("styles", required: false)
-</head>
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="login-logo">
-            <a href="/"><b>SmartShades</b></a>
-        </div>
-        <div class="card">
-            @if (MultiTenancyConfig.IsEnabled)
-            {
-                <div class="card-header">
-                    <vc:tenant-change></vc:tenant-change>
-                </div>
+    
+    <style>
+        #backgroundVideo {
+            width: auto;
+            height: max(calc(100vw / 1.77777), 100vh);
+            min-width: 100vw;
+            min-height: 100vh;
+            position: fixed;
+            left: 50%;
+            transform: translate(-50%);
+            top: 0;
+            z-index: -2;
+            filter: blur(3px);
+        }
+
+        input.password-text {
+            font-family: 'source_sans_pro_password';
+        }
+
+        .toggle-password {
+            cursor: pointer;
+            background-color: #dadada;
+            border-top-right-radius: .3rem;
+            border-bottom-right-radius: .3rem;
+        }
+
+            .toggle-password:hover {
+                background-color: #d1d1d1;
             }
-            <div class="card-body login-card-body">
+
+        .login-box {
+            width: 67%;
+            font-size: 1.5rem;
+            max-width: 700px
+        }
+
+        #rmfp {
+            justify-content: space-around;
+            font-size: 1.2rem;
+        }
+
+        @@media screen and (max-width: 600px) {
+            .login-box {
+                width: 85%;
+            }
+        }
+    </style>
+</head>
+<body class="hold-transition login-page" style="overflow: hidden auto">
+
+    <video autoplay muted loop id="backgroundVideo">
+        <source src="~/img/wave-white.mp4" type="video/mp4">
+    </video>
+
+    <div class="login-box">
+        <div class="login-logo" style="margin-bottom: 0">
+            <a href="/">
+                <img class="login-logo-img" src="~/img/logo-no-bg.png" alt="Logo" style="height: auto; width: 90%; max-width: 650px" />
+            </a>
+        </div>
+        <div class="card" style="filter: drop-shadow(0px 0px 45px rgba(248, 248, 248, .75)); background-color: #fff;">
+
+            <div class="card-body login-card-body" style="border-top-left-radius: 10px; border-top-right-radius: 10px">
                 @RenderBody()
-            </div>
-            <div class="card-footer">
-                <vc:account-languages></vc:account-languages>
             </div>
         </div>
         <div class="row">
@@ -50,6 +96,7 @@
             </div>
         </div>
     </div>
+
     @await Html.PartialAsync("_Scripts.cshtml")
     @RenderSection("scripts", required: false)
     @WebResourceManager.RenderScripts()
